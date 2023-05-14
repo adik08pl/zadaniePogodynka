@@ -1,30 +1,29 @@
-import java.util.Random;
-
 public class Main {
     public static void main(String[] args) {
-        int[] tab ={1,3,3,4,-8,4,4,3};
+        int[] tab ={4,12,-4,2,4,7,3,-5,6,5,-8,16};
         System.out.println(calculate(tab));
     }
 
     private static String calculate(int[] tab) {
-        int index = 0;
+        int index = 5;
         int min=99999,max=-99999;
         int tempAmp=0;
-        String answer="";
+        String answer;
         int numer=tab.length/4;
-        for(int j = 1;j<tab.length;j++) {
-            for (int i = 0; i<tab.length / 4; i++) {
-                if (max > tab[i + numer - 1]) {
-                    max = tab[i + numer - 1];
-                } else if (min < tab[i + numer - 1]) {
-                    min = tab[i + numer - 1];
+        for(int j = 0;j<4;j++) {
+            for (int i = 0; i<numer; i++) {
+                if (max < tab[i + numer*j]) {
+                    max = tab[i + numer*j];
+                }if (min > tab[i + numer*j]) {
+                    min = tab[i + numer*j];
                 }
             }
             if(tempAmp<max-min){
                 tempAmp=max-min;
                 index=j;
-                System.out.println(" dfdsf");
             }
+            max=-99999;
+            min=99999;
         }
         if(index==0) {
             answer="WINTER";
@@ -34,6 +33,8 @@ public class Main {
             answer="SUMMER";
         } else if (index==3) {
             answer="AUTUMN";
+        } else{
+            answer="ERROR";
         }
         return answer;
     }
